@@ -32,7 +32,7 @@ import com.codenjoy.dojo.services.multiplayer.GamePlayer;
 
 /**
  * Класс игрока. Тут кроме героя может подсчитываться очки.
- * Тут же ивенты передабтся лиснеру фреймворка.
+ * Тут же ивенты передаются лисенеру фреймворка.
  */
 public class Player extends GamePlayer<Hero, Field> {
 
