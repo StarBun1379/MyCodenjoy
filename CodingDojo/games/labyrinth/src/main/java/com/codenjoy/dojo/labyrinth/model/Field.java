@@ -38,9 +38,4 @@ public interface Field extends GameField<Player> {
 
     boolean isFree(Point pt);
 
-    boolean isBomb(Point pt);
-
-    void setBomb(Point pt);
-
-    void removeBomb(Point pt);
 }

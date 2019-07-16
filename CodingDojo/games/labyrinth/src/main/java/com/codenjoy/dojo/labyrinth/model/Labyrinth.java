@@ -23,9 +23,9 @@ package com.codenjoy.dojo.labyrinth.model;
  */
 
 
-import com.codenjoy.dojo.labyrinth.model.items.Bomb;
-import com.codenjoy.dojo.labyrinth.model.items.Gold;
+import com.codenjoy.dojo.labyrinth.model.items.Treasure;
 import com.codenjoy.dojo.labyrinth.model.items.Wall;
+import com.codenjoy.dojo.labyrinth.model.items.Empty;
 import com.codenjoy.dojo.labyrinth.services.Events;
 import com.codenjoy.dojo.services.BoardUtils;
 import com.codenjoy.dojo.services.Dice;
@@ -46,8 +46,8 @@ import static java.util.stream.Collectors.toList;
 public class Labyrinth implements Field {
 
     private List<Wall> walls;
-    private List<Gold> gold;
-    private List<Bomb> bombs;
+    private List<Empty> emptys;
+    private List<Treasure> treasures;
 
     private List<Player> players;
 
@@ -57,10 +57,10 @@ public class Labyrinth implements Field {
     public Labyrinth(Level level, Dice dice) {
         this.dice = dice;
         walls = level.getWalls();
-        gold = level.getGold();
+        emptys = level.getEmptys();
+        treasures = level.getTreasure();
         size = level.getSize();
         players = new LinkedList<>();
-        bombs = new LinkedList<>();
     }
 
     /**
@@ -73,12 +73,12 @@ public class Labyrinth implements Field {
 
             hero.tick();
 
-            if (gold.contains(hero)) {
-                gold.remove(hero);
+            if (treasures.contains(hero)) {
+                treasures.remove(hero);
                 player.event(Events.WIN);
 
                 Point pos = getFreeRandom();
-                gold.add(new Gold(pos));
+                treasures.add(new Treasure(pos));
             }
         }
 
@@ -115,31 +115,14 @@ public class Labyrinth implements Field {
 
     @Override
     public boolean isFree(Point pt) {
-        return !(gold.contains(pt)
-                || bombs.contains(pt)
+        return !(treasures.contains(pt)
                 || walls.contains(pt)
                 || getHeroes().contains(pt));
     }
 
-    @Override
-    public boolean isBomb(Point pt) {
-        return bombs.contains(pt);
-    }
 
-    @Override
-    public void setBomb(Point pt) {
-        if (!bombs.contains(pt)) {
-            bombs.add(new Bomb(pt));
-        }
-    }
-
-    @Override
-    public void removeBomb(Point pt) {
-        bombs.remove(pt);
-    }
-
-    public List<Gold> getGold() {
-        return gold;
+    public List<Treasure> getTreasures() {
+        return treasures;
     }
 
     public List<Hero> getHeroes() {
@@ -165,8 +148,8 @@ public class Labyrinth implements Field {
         return walls;
     }
 
-    public List<Bomb> getBombs() {
-        return bombs;
+    public List<Empty> getEpmtys() {
+        return emptys;
     }
 
     @Override
@@ -184,8 +167,8 @@ public class Labyrinth implements Field {
                 return new LinkedList<Point>(){{
                     addAll(Labyrinth.this.getWalls());
                     addAll(Labyrinth.this.getHeroes());
-                    addAll(Labyrinth.this.getGold());
-                    addAll(Labyrinth.this.getBombs());
+                    addAll(Labyrinth.this.getTreasures());
+                    addAll(Labyrinth.this.getEpmtys());
                 }};
             }
         };

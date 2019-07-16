@@ -136,7 +136,7 @@ public abstract class AbstractBoard<E extends CharElements> extends AbstractLaye
      * @param element Element that we try to detect on near point.
      * @return true is element was found.
      */
-    public boolean isNear(int x, int y, E element) {
+    public boolean isNear(int x, int y, E  element) {
         for (int layer = 0; layer < countLayers(); ++layer) {
             if (isNear(layer, x, y, element)) {
                 return true;

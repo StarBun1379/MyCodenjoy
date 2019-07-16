@@ -58,7 +58,7 @@ public class Board extends AbstractBoard<Elements> {
         return !get(Elements.DEAD_HERO).isEmpty();
     }
 
-    public boolean isBombAt(int x, int y) {
-        return isAt(x, y, Elements.BOMB);
-    }
+//    public boolean isBombAt(int x, int y) {
+//        return isAt(x, y, Elements.BOMB);
+//    }
 }

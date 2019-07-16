@@ -23,8 +23,9 @@ package com.codenjoy.dojo.labyrinth.model;
  */
 
 
-import com.codenjoy.dojo.labyrinth.model.items.Gold;
+import com.codenjoy.dojo.labyrinth.model.items.Treasure;
 import com.codenjoy.dojo.labyrinth.model.items.Wall;
+import com.codenjoy.dojo.labyrinth.model.items.Empty;
 
 import java.util.List;
 
@@ -40,7 +41,9 @@ public interface Level {
 
     List<Wall> getWalls();
 
+    List<Empty> getEmptys();
+
     List<Hero> getHero();
 
-    List<Gold> getGold();
+    List<Treasure> getTreasure();
 }

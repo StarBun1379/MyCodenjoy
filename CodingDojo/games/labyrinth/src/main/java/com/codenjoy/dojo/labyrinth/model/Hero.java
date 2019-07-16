@@ -82,7 +82,7 @@ public class Hero extends PlayerHero<Field> implements State<Elements, Player> {
     public void act(int... p) {
         if (!alive) return;
 
-        field.setBomb(this);
+        //field.setBomb(this);
     }
 
     @Override
@@ -92,10 +92,10 @@ public class Hero extends PlayerHero<Field> implements State<Elements, Player> {
         if (direction != null) {
             Point to = direction.change(this.copy());
 
-            if (field.isBomb(to)) {
-                alive = false;
-                field.removeBomb(to);
-            }
+//            if (field.isBomb(to)) {
+//                alive = false;
+//                field.removeBomb(to);
+//            }
 
             if (!field.isBarrier(to)) {
                 move(to);

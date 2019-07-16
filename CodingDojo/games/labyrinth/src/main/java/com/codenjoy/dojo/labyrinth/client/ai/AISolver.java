@@ -58,7 +58,7 @@ public class AISolver implements Solver<Board> {
                 int x = from.getX();
                 int y = from.getY();
                 if (board.isBarrierAt(x, y)) return false;
-                if (board.isBombAt(x, y)) return false;
+//                if (board.isBombAt(x, y)) return false;
 
                 Point newPt = where.change(from);
                 int nx = newPt.getX();
@@ -67,7 +67,7 @@ public class AISolver implements Solver<Board> {
                 if (board.isOutOfField(nx, ny)) return false;
 
                 if (board.isBarrierAt(nx, ny)) return false;
-                if (board.isBombAt(nx, ny)) return false;
+//                if (board.isBombAt(nx, ny)) return false;
 
                 return true;
             }
@@ -103,7 +103,7 @@ public class AISolver implements Solver<Board> {
         }
 
         Point from = board.getMe();
-        List<Point> to = board.get(Elements.GOLD);
+        List<Point> to = board.get(Elements.TREASURE);
         DeikstraFindWay.Possible map = possible(board);
         return way.getShortestWay(size, from, to, map);
     }
@@ -116,9 +116,9 @@ public class AISolver implements Solver<Board> {
         Point atUp = Direction.UP.change(me);
         Point atDown = Direction.DOWN.change(me);
 
-        return board.isAt(atLeft.getX(), atLeft.getY(), Elements.BOMB, Elements.WALL, Elements.OTHER_HERO) &&
-                board.isAt(atRight.getX(), atRight.getY(), Elements.BOMB, Elements.WALL, Elements.OTHER_HERO) &&
-                board.isAt(atUp.getX(), atUp.getY(), Elements.BOMB, Elements.WALL, Elements.OTHER_HERO) &&
-                board.isAt(atDown.getX(), atDown.getY(), Elements.BOMB, Elements.WALL, Elements.OTHER_HERO);
+        return board.isAt(atLeft.getX(), atLeft.getY(), Elements.WALL, Elements.OTHER_HERO) &&
+                board.isAt(atRight.getX(), atRight.getY(),  Elements.WALL, Elements.OTHER_HERO) &&
+                board.isAt(atUp.getX(), atUp.getY(), Elements.WALL, Elements.OTHER_HERO) &&
+                board.isAt(atDown.getX(), atDown.getY(), Elements.WALL, Elements.OTHER_HERO);
     }
 }

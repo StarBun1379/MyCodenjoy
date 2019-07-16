@@ -47,15 +47,16 @@ public class YourSolver implements Solver<Board> {
     @Override
     public String get(Board board) {
         this.board = board;
+        //System.out.println(board);
         if (board.isGameOver()) return "";
 
-        return Direction.UP.toString();
+        return Direction.random().toString();
     }
 
     public static void main(String[] args) {
         WebSocketRunner.runClient(
                 // paste here board page url from browser after registration
-                "http://codenjoy.com:80/codenjoy-contest/board/player/3edq63tw0bq4w4iem7nb?code=1234567890123456789",
+                "http://localhost:8080/codenjoy-contest/board/player/cbmwbbp3cvjbb0okpkh7?code=951683441776459185",
                 new YourSolver(new RandomDice()),
                 new Board());
     }
